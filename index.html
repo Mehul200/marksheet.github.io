@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>STUDENT MARKSHEET</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+		 	<div class="modal-content mt-4">
+		 	 	<div class="modal-header">
+					<h1>Marksheet</h1>
+		     	</div>
+				<form id="frm">
+					<div class="container mt-4">
+					<div class="form-group">
+					<input type="number" name="java" placeholder="Java" id="java" max="100" onchange="handleChange(this);" class="form-control"></div><br><br>
+					<input type="number" name="python" placeholder="Python" id="python" max="100" onchange="handleChange(this);" class="form-control"><br><br>
+					<input type="number" name="web" placeholder="Web Design" id="wd" max="100" onchange="handleChange(this);" class="form-control"><br><br>
+					<input type="number" name="javascript" placeholder="Javascript" id="js" max="100" onchange="handleChange(this);" class="form-control"><br><br>
+					<input type="button" name="submit" value="RESULT" onclick="result()" class="btn btn-primary form-control"><br><br>
+					
+					<div class="container">
+						<div class="container"> 
+						<h3 id="showdata"></h3>
+					</div>
+					<div>
+				</div>
+				</div>
+				</form>
+ 		</div>
+
+	</body>
+</html>
+<script type="text/javascript">
+	const result = () =>{
+
+		let java = document.getElementById("java").value;
+		let python = document.getElementById("python").value;
+		let web = document.getElementById("wd").value;
+		let javascript = document.getElementById("js").value;
+		let grade ="";
+		
+		let total = parseFloat(java) + parseFloat(python) + parseFloat(web) + parseFloat(javascript);
+		//alert(total);
+
+		let per = total/4;
+		
+
+		if(per <= 100 && per >= 80){
+			grade = 'A';
+		}
+		else if(per <= 79 && per >= 60){
+			grade = 'B';
+		}
+		else if (per <= 59 && per >=40) {
+			grade = 'C';
+		}
+		else{
+			grade = 'F';
+		}
+
+		if(per >= 39.5){
+			document.getElementById("showdata").innerHTML = `Out of 400 your total is ${total} and percentage is ${per}% <br> your is grade is ${grade}. you are Pass.`;
+		}
+		else{
+			document.getElementById("showdata").innerHTML = `Out of 400 your total is ${total} and percentage is ${per}% <br> your is grade is ${grade}. you are Fail.`;
+		}
+
+		
+		//let data = document.getElementById("showdata");
+		//data.innerHTML = "out of 400 your total is" + total +"<br>" +"and percentage is"+ per +"<br>" + "your grade is"+ grade;
+	}
+
+function handleChange(input) {
+    if (input.value < 0) input.value = 0;
+    if (input.value > 100) input.value = 100;
+  }
+
+  
+//sec method
+ /* document.getElementById("test_id").onkeyup = function() {
+  var input = parseInt(this.value);
+  if (input < 0 || input > 100)
+    console.log("Value should be between 0 - 100");
+  return;
+}*/
+
+</script>
